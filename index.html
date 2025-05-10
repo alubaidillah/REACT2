@@ -8,59 +8,88 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="text/jsx">
-      const container = document.getElementById('root');
+    <script type="text/babel">
+      const container = document.getElementById("root");
       const root = ReactDOM.createRoot(container);
 
-      function Header({name}){
-        return (<h1>Belajar React Bareng {name}</h1>)
+      function Header({ name }) {
+        return <h1>Belajar React Bareng {name}</h1>;
       }
 
-      function HomePage(){
-        const students = ['Sandika', 'Doddy', 'Dika', 'Fikri', 'Rizki'];
+      function HomePage() {
+        const students = ["Sandika", "Doddy", "Dika", "Fikri", "Rizki"];
         const [likes, setLikes] = React.useState(0);
 
-        function handleClick(){
+        function handleClick() {
           setLikes(likes + 1);
         }
         return (
           <div>
-            <Header name ="Makanan"/>
-            <Header name ="Minuman"/>
+            <Header name="Makanan" />
+            <Header name="Minuman" />
             <p>Selamat datang di halaman utama!</p>
 
             <ul>
-              {students.map((student) =>
-              <li key={student}>{student}</li>)}
+              {students.map((student) => (
+                <li key={student}>{student}</li>
+              ))}
             </ul>
 
             <button onClick={handleClick}>Like {likes}</button>
           </div>
-      )}
+        );
+      }
 
-      function Tugas(){
+      function Tugas() {
         const [counter, setCounter] = React.useState(0);
 
-        function klikKurang(){
+        function klikKurang() {
           setCounter(counter - 1);
         }
 
-        function klikTambah(){
+        function klikTambah() {
           setCounter(counter + 1);
         }
 
-        function reset(){
+        function reset() {
           setCounter(0);
         }
 
         return (
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh", gap: "20px" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100vh",
+              gap: "20px",
+            }}
+          >
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <button onClick={klikKurang} disabled={counter === 10 || counter === -1}>-</button>
-              <h1 style={{ margin: "0 10px" }}>{counter === 10 || counter === -1 ? "done" : counter}</h1>
-              <button onClick={klikTambah} disabled={counter === 10 || counter === -1}>+</button>
+              <button
+                onClick={klikKurang}
+                disabled={counter === 10 || counter === -1}
+              >
+                -
+              </button>
+              <h1 style={{ margin: "0 10px" }}>
+                {counter === 10 || counter === -1 ? "done" : counter}
+              </h1>
+              <button
+                onClick={klikTambah}
+                disabled={counter === 10 || counter === -1}
+              >
+                +
+              </button>
             </div>
-            <button onClick={reset} style={{ marginTop: "20px" }} disabled={counter !== 10 && counter !== -1}>Reset</button>
+            <button
+              onClick={reset}
+              style={{ marginTop: "20px" }}
+              disabled={counter !== 10 && counter !== -1}
+            >
+              Reset
+            </button>
           </div>
         );
       }
