@@ -3,12 +3,42 @@
   <head>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <title>Belajar Bareng Pak Dika</title>
   </head>
   <body>
     <div id="root"></div>
-    <script type="text/javasript">
+    <script type="text/jsx">
       const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+
+      function Header({name}){
+        return (<h1>Belajar React Bareng {name ? name : "Sudahlah"}</h1>)
+      }
+
+      function HomePage(){
+        const students = ['Sandika', 'Doddy', 'Dika', 'Fikri', 'Rizki'];
+        const [likes, setLikes] = React.useState(0);
+
+        function handleClick(){
+          setLikes(likes + 1);
+        }
+        return (
+          <div>
+            <Header name ="Makanan"/>
+            <Header name ="Minuman"/>
+            <p>Selamat datang di halaman utama!</p>
+
+            <ul>
+              {students.map((student) =>
+              <li key={student}>{student}</li>)}
+            </ul>
+
+            <button onClick={handleClick}>Like {likes}</button>
+          </div>
+      )}
+
+      root.render(<HomePage />);
     </script>
   </body>
 </html>
