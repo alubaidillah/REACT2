@@ -13,7 +13,7 @@
       const root = ReactDOM.createRoot(container);
 
       function Header({name}){
-        return (<h1>Belajar React Bareng {name ? name : "Sudahlah"}</h1>)
+        return (<h1>Belajar React Bareng {name}</h1>)
       }
 
       function HomePage(){
@@ -38,7 +38,34 @@
           </div>
       )}
 
-      root.render(<HomePage />);
+      function Tugas(){
+        const [counter, setCounter] = React.useState(0);
+
+        function klikKurang(){
+          setCounter(counter - 1);
+        }
+
+        function klikTambah(){
+          setCounter(counter + 1);
+        }
+
+        function reset(){
+          setCounter(0);
+        }
+
+        return (
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh", gap: "20px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <button onClick={klikKurang} disabled={counter === 10 || counter === -1}>-</button>
+              <h1 style={{ margin: "0 10px" }}>{counter === 10 || counter === -1 ? "done" : counter}</h1>
+              <button onClick={klikTambah} disabled={counter === 10 || counter === -1}>+</button>
+            </div>
+            <button onClick={reset} style={{ marginTop: "20px" }} disabled={counter !== 10 && counter !== -1}>Reset</button>
+          </div>
+        );
+      }
+
+      root.render(<Tugas />);
     </script>
   </body>
 </html>
