@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Borel&family=Comfortaa:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Borel&family=Comfortaa:wght@300;400;700&display=swap");
 
 * {
   margin: 0;
@@ -6,32 +6,45 @@
   box-sizing: border-box;
 }
 
-/* html {
-  font-size: 62.5%;
-} */
-
-body {
-  font-size: 1rem;
-  font-family: 'Comfortaa', sans-serif;
-  color: #283618;
-  background-color: #fefae0;
+/* Perbaikan untuk ukuran font dasar */
+html {
+  font-size: 62.5%; /* Uncomment dan sesuaikan ukuran dasar font */
 }
 
+body {
+  font-size: 1.6rem; /* Sesuaikan ukuran font body */
+  font-family: "Comfortaa", sans-serif;
+  color: #283618;
+  background: linear-gradient(135deg, #fefae0 0%, #f8f4d7 100%);
+}
+
+/* Perbaikan untuk App container */
 .app {
-  width: 70%;
-  height: 100vh;
+  width: 90%;
+  max-width: 120rem;
+  height: 100vh; /* Ubah min-height menjadi height tetap */
   margin: auto;
   display: grid;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-rows: auto auto 1fr auto; /* Menggunakan fr unit untuk bagian list */
+  gap: 0;
+  overflow: hidden; /* Mencegah scroll pada container utama */
 }
 
 h1 {
-  font-family: 'Borel';
+  font-family: "Borel";
   text-align: center;
   background-color: #283618;
   color: white;
-  font-size: 6rem;
-  padding: 4rem 0 1rem;
+  font-size: 5rem; /* Sesuaikan ukuran font heading */
+  padding: 3rem 0 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s;
+  z-index: 3;
+}
+
+h1:hover {
+  transform: scale(1.02);
 }
 
 .add-form {
@@ -42,11 +55,20 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 3;
+}
+
+.add-form:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 
 .add-form h3 {
   margin-right: 2rem;
-  font-size: 3rem;
+  font-size: 2.4rem; /* Sesuaikan ukuran font form heading */
 }
 
 .add-form div {
@@ -64,8 +86,8 @@ input {
   font-family: inherit;
   border: none;
   border-radius: 3rem;
-  padding: 1.2rem 3.2rem;
-  font-size: 2rem;
+  padding: 1rem 2.4rem; /* Sesuaikan padding */
+  font-size: 1.6rem; /* Sesuaikan ukuran font input */
   cursor: pointer;
 }
 
@@ -73,47 +95,82 @@ button {
   background-color: #283618;
   color: #fefae0;
   font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  background-color: #3a4a23;
+}
+
+/* Perbaikan untuk list container */
 .list {
-  background-image: url(img/paper-bg.jpg);
-  background-repeat: repeat-y;
-  background-size: 155%;
-  /* background-attachment: local; */
-  color: #fefae0;
-  padding: 2.3rem 0 0;
+  background-image: url(./img/kertas.jpg);;
+  background-size: 100%;
+  position: relative;
+  height: 100%; /* Tambahkan height 100% */
+  padding: 2.3rem 0;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  gap: 3.2rem;
   align-items: center;
-  overflow-y: scroll;
+  justify-content: center; /* Tambahkan justify-content center */
+  overflow: hidden; /* Mencegah scroll pada container list */
 }
 
+.list::before {
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+/* Perbaikan untuk ul dalam list */
 .list ul {
+  position: relative;
+  z-index: 1;
   list-style: none;
   width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: -1rem;
+  max-height: 100%; /* Menggunakan max-height alih-alih height */
+  overflow-y: auto; /* Hanya ul yang bisa di-scroll */
+  padding: 1rem;
+  margin: 0;
+  -webkit-overflow-scrolling: touch; /* Untuk smooth scrolling di iOS */
 }
 
 .list li {
   color: #283618;
-  font-size: 4rem;
+  font-size: 2.4rem; /* Sesuaikan ukuran font list item */
   font-weight: bold;
   display: flex;
   align-items: center;
-  /* gap: 2rem; */
+  width: 90%; /* Batasi lebar list item */
+  max-width: 80rem; /* Tambahkan max-width untuk list item */
   margin-bottom: 3rem;
+  transition: all 0.3s ease;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.list input[type='checkbox'] {
+.list li:hover {
+  transform: translateX(10px);
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.list input[type="checkbox"] {
   height: 3rem;
   width: 3rem;
   accent-color: #283618;
   margin-right: 1.3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .list li button {
@@ -127,13 +184,25 @@ button {
   height: 3rem;
   background-color: red;
   margin-left: 1rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  background-color: #ff4444;
 }
 
+.list li button:hover {
+  background-color: #ff0000;
+  transform: rotate(90deg);
+}
+
+/* Perbaikan untuk actions */
 .actions {
   background-color: #606c38;
   width: 100%;
   padding: 2rem 0;
   text-align: center;
+  position: relative; /* Ubah dari sticky ke relative */
+  z-index: 2;
+  margin-top: auto;
 }
 
 .actions button,
@@ -143,23 +212,83 @@ button {
   margin: 0 0.8rem;
 }
 
+/* Perbaikan untuk footer */
 .stats {
+  position: relative;
+  z-index: 2;
   background-color: #bc6c25;
+  width: 100%;
   color: white;
   text-align: center;
   padding: 3.2rem 0;
   font-size: 2rem;
   font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stats:hover {
+  background-color: #d17b2b;
 }
 
 /* tablet */
 @media (max-width: 768px) {
   html {
-    font-size: 40%;
+    font-size: 56.25%; /* 9px */
+  }
+
+  .app {
+    width: 95%;
   }
 }
+
 @media (max-width: 576px) {
   html {
-    font-size: 40%;
+    font-size: 50%; /* 8px */
   }
+
+  .app {
+    width: 98%;
+  }
+
+  .list li {
+    font-size: 2rem;
+    padding: 0.8rem 1.6rem;
+  }
+
+  .actions button,
+  .actions select {
+    padding: 0.8rem 1.6rem;
+    font-size: 1.4rem;
+  }
+}
+
+/* Tambahan untuk layar besar */
+@media (min-width: 1200px) {
+  html {
+    font-size: 75%; /* 12px */
+  }
+
+  .app {
+    max-width: 140rem;
+  }
+}
+
+/* Scrollbar Styling */
+.list ul::-webkit-scrollbar {
+  width: 8px;
+}
+
+.list ul::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.list ul::-webkit-scrollbar-thumb {
+  background: #283618;
+  border-radius: 10px;
+}
+
+.list ul::-webkit-scrollbar-thumb:hover {
+  background: #3a4a23;
 }
