@@ -66,8 +66,6 @@ function GroceryList() {
           {groceryItems.map((item) => (
             <Item item={item} key={item.id} />
           ))}
-          
-      
         </ul>
       </div>
       <div className="actions">
